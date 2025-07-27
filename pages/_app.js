@@ -1,5 +1,16 @@
-import "@/styles/globals.css";
+import "../styles/globals.css";
+import Chatbot from "../components/Chatbot";
+import CursorTrail from "@/components/CursorTrail";
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <>
+    <CursorTrail />
+      <Component {...pageProps} />
+      <Chatbot /> {/* 🧠 MukthaBot available on every page */}
+    </>
+  );
 }
+
+export default MyApp;

@@ -1,26 +1,141 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* 🌍 Smooth scrolling & transitions */
+html {
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* 🧼 Base body styling */
+body {
+  @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-white overflow-x-hidden min-h-screen;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* 💬 Chatbot styling */
+.chatbot-hidden {
+  display: none;
+}
+
+.message-bubble {
+  background: #292929;
+  border-radius: 10px;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.message-bubble.user {
+  background: #3f3f3f;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.bubble-text {
+  color: white;
+}
+
+/* ✨ Animation: fade-in */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out;
 }
+
+/* ✨ Animation: fade-up */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 1s ease-out forwards;
+}
+
+/* ✨ Animation: fade-only */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+/* 🌈 Animated gradient text */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-textShine {
+  background-size: 300% 300%;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* ✨ Shiny Black Animation */
+.shiny-bg {
+  background: linear-gradient(120deg, #0d0d0d, #1a1a1a, #0d0d0d);
+  background-size: 200% 200%;
+  animation: shineEffect 6s ease-in-out infinite;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+@keyframes shineEffect {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.bg-animated-bw {
+  background: radial-gradient(circle at 50% 50%, #ffffff15, #000000 60%);
+  animation: swirl 15s infinite linear;
+}
+
+@keyframes swirl {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+/* globals.css */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
