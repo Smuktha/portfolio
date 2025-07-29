@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://your-temp-domain.com/sitemap.xml

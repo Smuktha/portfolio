@@ -1,8 +1,10 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Sun, Moon, X, Send, Bot } from 'lucide-react';
+import { Sun, Moon, X, Send } from 'lucide-react';
+import Image from 'next/image';
 
 const options = [
   'View my Projects',
@@ -26,9 +28,16 @@ export default function Chatbot() {
   const [input, setInput] = useState('');
   const chatRef = useRef(null);
 
+  const router = useRouter();
+  const pathname = usePathname();
+
   const scrollToShowcaseAndSwitchTab = (tabKey) => {
-    document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' });
-    window.dispatchEvent(new CustomEvent('switchShowcaseTab', { detail: tabKey }));
+    if (pathname !== '/') {
+      router.push(`/?tab=${tabKey.toLowerCase()}`);
+    } else {
+      document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' });
+      window.dispatchEvent(new CustomEvent('switchShowcaseTab', { detail: tabKey }));
+    }
   };
 
   const handleInputCommand = (inputText) => {
@@ -43,7 +52,7 @@ export default function Chatbot() {
       return `Sure! Showing your <strong>Projects</strong> 🚀`;
     }
     if (text.includes('resume')) {
-      window.open('/resume.pdf', '_blank');
+      window.open('/resume_muktha.pdf', '_blank');
       return `Opening your <strong>Resume</strong> 📄`;
     }
     if (text.includes('contact')) {
@@ -55,7 +64,7 @@ export default function Chatbot() {
       return `Heading to your <strong>Blogs</strong> ✍️`;
     }
     if (text.includes('freelance')) {
-      window.location.href = '/freelance';
+      router.push('/freelance');
       return `Opening your <strong>Freelance Work</strong> 💼`;
     }
     if (text.includes('certificate')) {
@@ -76,13 +85,12 @@ export default function Chatbot() {
     const userText = input.trim();
     const botReply = handleInputCommand(userText);
 
-    const newMessages = [
-      ...messages,
+    setMessages((prev) => [
+      ...prev,
       { text: userText, isBot: false },
       { text: botReply, isBot: true },
-    ];
+    ]);
 
-    setMessages(newMessages);
     setInput('');
   };
 
@@ -97,7 +105,7 @@ export default function Chatbot() {
         break;
 
       case 'Show my Resume':
-        window.open('/resume.pdf', '_blank');
+        window.open('/resume_muktha.pdf', '_blank');
         botMsg = { text: `Opening your <strong>Resume</strong> 📄`, isBot: true };
         break;
 
@@ -112,7 +120,7 @@ export default function Chatbot() {
         break;
 
       case 'See Freelance Work':
-        window.location.href = '/freelance';
+        router.push('/freelance');
         botMsg = { text: `Opening your <strong>Freelance Work</strong> 💼`, isBot: true };
         break;
 
@@ -151,25 +159,43 @@ export default function Chatbot() {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-50">
+      {/* Bot Button with animation */}
+      <motion.div
+        className="fixed bottom-6 right-6 z-50"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      >
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="bg-indigo-600 hover:bg-indigo-700 text-white p-4 rounded-full shadow-lg"
         >
-          {isOpen ? <X /> : <Bot />}
+          {isOpen ? (
+            <X />
+          ) : (
+            <div className="w-10 h-10 rounded-full overflow-hidden">
+              <Image
+                src="/chatbot/chat.png"
+                alt="Bot"
+                width={40}
+                height={40}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
         </button>
-      </div>
+      </motion.div>
 
+      {/* Chat Panel */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 60 }}
+            initial={{ opacity: 0, scale: 0.8, y: 60 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 60 }}
             transition={{ duration: 0.3 }}
             className={`fixed bottom-24 right-6 w-96 max-w-[90vw] z-50 ${bgColor} ${textColor} ${borderColor} border rounded-xl shadow-xl`}
           >
-            {/* Header */}
             <div className={`flex items-center justify-between p-4 border-b ${borderColor}`}>
               <h2 className="text-lg font-semibold">MukthaBot 🤖</h2>
               <button onClick={() => setDarkMode(!darkMode)}>
@@ -177,7 +203,6 @@ export default function Chatbot() {
               </button>
             </div>
 
-            {/* Messages */}
             <div ref={chatRef} className="h-64 overflow-y-auto p-4 space-y-4">
               {messages.map((msg, idx) => (
                 <div key={idx} className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'}`}>
@@ -193,7 +218,6 @@ export default function Chatbot() {
               ))}
             </div>
 
-            {/* Input */}
             <div className={`flex items-center p-4 border-t ${borderColor}`}>
               <input
                 type="text"
@@ -211,7 +235,6 @@ export default function Chatbot() {
               </button>
             </div>
 
-            {/* Options */}
             <div className="grid grid-cols-2 gap-2 p-4">
               {options.map((option, idx) => (
                 <button
