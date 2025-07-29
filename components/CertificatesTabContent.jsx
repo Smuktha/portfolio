@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image"; // ✅ Import Next.js Image
+import Image from "next/image";
 import certificates from "../data/certificates";
 import CertificateModal from "./CertificateModal";
 

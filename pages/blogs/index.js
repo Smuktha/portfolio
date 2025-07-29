@@ -84,6 +84,9 @@ export default function AllBlogsPage() {
           </div>
 
           <div className="text-center mt-20">
+            <p className="text-subtleText text-sm mb-4">
+              Don&apos;t miss out on updates!
+            </p>
             <a
               href="https://medium.com/@mukthas701"
               target="_blank"

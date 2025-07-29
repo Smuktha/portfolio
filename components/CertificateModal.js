@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
+import Image from "next/image";
 
 export default function CertificateModal({ src, onClose }) {
   if (!src) return null;
@@ -28,11 +29,15 @@ export default function CertificateModal({ src, onClose }) {
           >
             <X />
           </button>
-          <img
-            src={src}
-            alt="Certificate"
-            className="w-full h-auto max-h-[80vh] object-contain rounded"
-          />
+          <div className="relative w-full h-[60vh]">
+            <Image
+              src={src}
+              alt="Certificate"
+              fill
+              className="object-contain rounded"
+              sizes="(max-width: 768px) 100vw, 80vw"
+            />
+          </div>
         </motion.div>
       </motion.div>
     </AnimatePresence>

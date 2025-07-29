@@ -1,3 +1,5 @@
+'use client';
+
 import { Github, Linkedin, BookOpen, Mail } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -16,13 +18,14 @@ export default function Hero() {
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // ✅ useEffect with dependency
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % titles.length);
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [titles.length]); // ✅ Dependency added here
+  }, [titles.length]);
 
   const skills = [
     "React.js", "Next.js", "Tailwind CSS", "Node.js",
@@ -45,7 +48,13 @@ export default function Hero() {
 
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center text-white overflow-hidden">
-      <Image src={avatar} alt="Hero Background" fill className="object-cover object-center z-0" priority />
+      <Image
+        src={avatar}
+        alt="Hero Background"
+        fill
+        className="object-cover object-center z-0"
+        priority
+      />
 
       {positions.map((pos, index) => (
         <motion.div
