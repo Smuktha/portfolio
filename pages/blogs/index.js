@@ -36,15 +36,15 @@ export default function AllBlogsPage() {
   return (
     <>
       <NextSeo
-        title="All Blogs | Muktha’s Portfolio"
+        title="All Blogs | Muktha's Portfolio"
         description="Explore blog posts written by Muktha on frontend, deployment, animation, and final year projects."
         canonical="https://your-portfolio.vercel.app/blogs"
         openGraph={{
           url: "https://your-portfolio.vercel.app/blogs",
-          title: "All Blogs | Muktha’s Portfolio",
+          title: "All Blogs | Muktha's Portfolio",
           description:
             "Explore blog posts written by Muktha on frontend, deployment, animation, and final year projects.",
-          site_name: "Muktha’s Portfolio",
+          site_name: "Muktha's Portfolio",
         }}
       />
 

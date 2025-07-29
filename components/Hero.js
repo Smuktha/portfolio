@@ -19,9 +19,10 @@ export default function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % titles.length);
-    }, 3000); // slowed down title change speed
+    }, 3000);
+
     return () => clearInterval(interval);
-  }, []);
+  }, [titles.length]); // ✅ Dependency added here
 
   const skills = [
     "React.js", "Next.js", "Tailwind CSS", "Node.js",

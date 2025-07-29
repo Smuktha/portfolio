@@ -60,7 +60,7 @@ export default function About() {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          I'm <span className="font-semibold text-white">Muktha</span>, a full-stack web
+          I&rsquo;m <span className="font-semibold text-white">Muktha</span>, a full-stack web
           developer. I specialize in building dynamic, accessible UI/UX interfaces
           using modern tools like React, Next.js, and Tailwind CSS.
           <br />
@@ -69,11 +69,11 @@ export default function About() {
           <strong className="text-white">Morton Dental</strong>, built with Next.js App Router
           and performance-focused SEO.
           <br />
-          I've also integrated a custom chatbot into my portfolio, used Framer Motion
+          I&rsquo;ve also integrated a custom chatbot into my portfolio, used Framer Motion
           for animation, and prioritized SEO + performance optimization.
           <br />
-          If you're looking for a developer who mixes creativity with technical depth —
-          I'm ready to collaborate and bring your ideas to life.
+          If you&rsquo;re looking for a developer who mixes creativity with technical depth —
+          I&rsquo;m ready to collaborate and bring your ideas to life.
         </motion.p>
 
         {/* Buttons */}

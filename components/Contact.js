@@ -15,7 +15,7 @@ export default function Contact() {
       >
         <h2 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">👋 Get In Touch</h2>
         <p className="text-white/80 text-lg md:text-xl mb-10">
-          I'm currently open to new opportunities and collaborations. Whether you have a project in mind, a question, or just want to say hi, my inbox is always open. I'll try my best to get back to you!
+          I&rsquo;m currently open to new opportunities and collaborations. Whether you have a project in mind, a question, or just want to say hi, my inbox is always open. I&rsquo;ll try my best to get back to you!
         </p>
         <a
           href="mailto:mukthas701@gmail.com"

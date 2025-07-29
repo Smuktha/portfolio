@@ -3,13 +3,14 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image"; // ✅ Import Next.js Image
 import certificates from "../data/certificates";
-import CertificateModal from "./CertificateModal"; // 👈 Import
+import CertificateModal from "./CertificateModal";
 
 export default function CertificatesTabContent() {
   const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(null);
-  const [modalSrc, setModalSrc] = useState(null); // 👈 For modal
+  const [modalSrc, setModalSrc] = useState(null);
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -25,7 +26,7 @@ export default function CertificatesTabContent() {
       setActiveIndex(null);
     } else {
       setActiveIndex(index);
-      setModalSrc(certificates[index]); // 👈 Open modal
+      setModalSrc(certificates[index]);
     }
   };
 
@@ -70,10 +71,12 @@ export default function CertificatesTabContent() {
             `}
             style={{ touchAction: "pan-x" }}
           >
-            <img
+            <Image
               src={src}
               alt={`Certificate ${i + 1}`}
-              className="w-full h-full object-contain p-4 transition-transform duration-300 pointer-events-none"
+              width={400}
+              height={480}
+              className="object-contain p-4 pointer-events-none w-full h-full"
             />
           </motion.div>
         ))}
