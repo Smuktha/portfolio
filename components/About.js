@@ -1,22 +1,19 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaCode, FaLaptopCode, FaFlask } from "react-icons/fa";
 import { FiDownload } from "react-icons/fi";
 import { BiCodeCurly } from "react-icons/bi";
 import Link from "next/link";
-import { useState } from "react";
 
-const About = () => {
-  const [activeCard, setActiveCard] = useState(null);
-
-  const stats = [
+const stats = [
   {
     icon: <FaCode size={30} />,
     title: "FREELANCE WORK",
     description: "View portfolio and freelance work",
     valueIcon: "📂",
-    onClick: () => window.location.href = "/freelance",
+    onClick: () => (window.location.href = "/freelance"),
   },
   {
     icon: <FaLaptopCode size={30} />,
@@ -37,8 +34,14 @@ const About = () => {
   },
 ];
 
+export default function About() {
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+
   return (
-    <section id="about" className="relative z-10 bg-[#0a2540] text-white px-6 py-24 sm:px-16 lg:px-32">
+    <section
+      id="about"
+      className="relative z-10 bg-[#0a2540] text-white px-6 py-24 sm:px-16 lg:px-32"
+    >
       <div className="max-w-5xl mx-auto text-center">
         {/* Heading */}
         <motion.h2
@@ -57,12 +60,20 @@ const About = () => {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          I'm <span className="font-semibold text-white">Muktha</span>, a full-stack web developer. I specialize in building dynamic, accessible UI/UX interfaces using modern tools like React, Next.js, and Tailwind CSS.
-
-          I recently completed a full-featured dental website for <strong className="text-white">Morton Dental</strong>, built with Next.js App Router and performance-focused SEO.
-          I’ve also developed and integrated a custom chatbot into my portfolio, experimented with Framer Motion, and focused on real-world SEO and performance optimization.
+          I'm <span className="font-semibold text-white">Muktha</span>, a full-stack web
+          developer. I specialize in building dynamic, accessible UI/UX interfaces
+          using modern tools like React, Next.js, and Tailwind CSS.
           <br />
-          If you're looking for a developer who combines creativity with technical depth. I'm eager to collaborate and bring your ideas to life.
+          <br />
+          I recently completed a full-featured dental website for{" "}
+          <strong className="text-white">Morton Dental</strong>, built with Next.js App Router
+          and performance-focused SEO.
+          <br />
+          I've also integrated a custom chatbot into my portfolio, used Framer Motion
+          for animation, and prioritized SEO + performance optimization.
+          <br />
+          If you're looking for a developer who mixes creativity with technical depth —
+          I'm ready to collaborate and bring your ideas to life.
         </motion.p>
 
         {/* Buttons */}
@@ -87,7 +98,7 @@ const About = () => {
           </Link>
         </motion.div>
 
-        {/* Stats */}
+        {/* Stats Cards */}
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-3 gap-6"
           initial="hidden"
@@ -98,13 +109,9 @@ const About = () => {
             <motion.div
               key={index}
               className="bg-white/5 border border-white/20 p-6 rounded-2xl shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 hover:-translate-y-1 cursor-pointer backdrop-blur"
-              onClick={() => {
-                if (stat.onClick) {
-                  stat.onClick();
-                } else {
-                  setActiveCard(activeCard === index ? null : index);
-                }
-              }}
+              onClick={() =>
+                stat.onClick ? stat.onClick() : setActiveCard(activeCard === index ? null : index)
+              }
               whileHover={{ scale: 1.02 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -117,29 +124,35 @@ const About = () => {
                 <div>
                   <p className="text-sm tracking-wider text-white/70">{stat.title}</p>
                   <motion.div
-  className="text-4xl mt-1 text-white"
-  initial={{ opacity: 0, y: 10 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.3, duration: 0.4 }}
->
-  {stat.valueIcon}
-</motion.div>
+                    className="text-4xl mt-1 text-white"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.4 }}
+                  >
+                    {stat.valueIcon}
+                  </motion.div>
                 </div>
               </div>
               <p className="text-white/60 mt-4 text-sm">{stat.description}</p>
 
-              {stat.links && activeCard === index && (
-                <div className="mt-2 space-y-1 text-sm text-cyan-300">
-                  {stat.links.map((link, i) => (
-                    <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="block underline hover:text-cyan-100">
+              {/* Expandable content */}
+              {activeCard === index && (
+                <>
+                  {stat.links?.map((link, i) => (
+                    <a
+                      key={i}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block mt-2 text-sm text-cyan-300 underline hover:text-cyan-100"
+                    >
                       → {link.name}
                     </a>
                   ))}
-                </div>
-              )}
-
-              {stat.extraText && activeCard === index && (
-                <p className="text-cyan-300 text-sm mt-2">{stat.extraText}</p>
+                  {stat.extraText && (
+                    <p className="text-cyan-300 text-sm mt-2">{stat.extraText}</p>
+                  )}
+                </>
               )}
             </motion.div>
           ))}
@@ -147,6 +160,4 @@ const About = () => {
       </div>
     </section>
   );
-};
-
-export default About;
+}
