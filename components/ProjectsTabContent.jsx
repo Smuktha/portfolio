@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image'; // ✅ Import Next.js Image
 import ProjectModal from './ProjectModal';
 
 const projects = [
@@ -32,7 +33,16 @@ export default function ProjectsTabContent() {
           onClick={() => setSelectedProject(project)}
           className="cursor-pointer border rounded-xl p-4 bg-neutral-900 hover:bg-neutral-800 transition shadow"
         >
-          <img src={project.image} alt={project.title} className="rounded-md mb-3" />
+          <div className="relative w-full h-48 mb-3">
+            <Image
+              src={project.image}
+              alt={project.title}
+              layout="fill"
+              objectFit="cover"
+              className="rounded-md"
+              priority={idx === 0} // Prioritize loading first image
+            />
+          </div>
           <h3 className="text-lg font-semibold text-white">{project.title}</h3>
           <p className="text-sm text-gray-300 line-clamp-2">{project.description}</p>
         </div>

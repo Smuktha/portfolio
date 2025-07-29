@@ -10,16 +10,16 @@ export default function ProjectsTabs() {
   const [activeTab, setActiveTab] = useState("Projects");
 
   return (
-    <div>
+    <div className="w-full">
       {/* Tab Buttons */}
-      <div className="flex justify-center mb-10 gap-4">
+      <div className="flex justify-center mb-10 gap-4 flex-wrap">
         {tabs.map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`px-6 py-2 rounded-full font-medium text-sm transition-all duration-200 ${
+            className={`px-6 py-2 rounded-full font-medium text-sm transition-all duration-200 focus:outline-none ${
               activeTab === tab
-                ? "bg-white text-black"
+                ? "bg-white text-black shadow-md"
                 : "bg-[#1A1A1D] text-white hover:bg-neutral-800"
             }`}
           >
@@ -29,7 +29,7 @@ export default function ProjectsTabs() {
       </div>
 
       {/* Tab Content */}
-      <div>
+      <div className="animate-fade-in">
         {activeTab === "Projects" && <ProjectsTabContent />}
         {activeTab === "Certificates" && <CertificatesTabContent />}
         {activeTab === "Tech Stack" && <TechStackTabContent />}
