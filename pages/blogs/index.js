@@ -26,7 +26,7 @@ const blogs = [
   {
     title: "Deploying a Next.js Project on HostingBay with cPanel",
     description:
-      "Step-by-step deployment of a static project using HostingBay’s cPanel setup.",
+      "Step-by-step deployment of a static project using HostingBay&rsquo;s cPanel setup.",
     date: "March 2025",
     link: "https://medium.com/@mukthas701/deploy-nextjs",
   },
@@ -36,15 +36,15 @@ export default function AllBlogsPage() {
   return (
     <>
       <NextSeo
-        title="All Blogs | Mukthas Portfolio"
+        title="All Blogs | Muktha's Portfolio"
         description="Explore blog posts written by Muktha on frontend, deployment, animation, and final year projects."
         canonical="https://your-portfolio.vercel.app/blogs"
         openGraph={{
           url: "https://your-portfolio.vercel.app/blogs",
-          title: "All Blogs | Muktha&apos;s Portfolio",
+          title: "All Blogs | Muktha's Portfolio",
           description:
             "Explore blog posts written by Muktha on frontend, deployment, animation, and final year projects.",
-          site_name: "Muktha&apos;s Portfolio",
+          site_name: "Muktha's Portfolio",
         }}
       />
 
