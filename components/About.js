@@ -35,7 +35,7 @@ const stats = [
 ];
 
 export default function About() {
-  const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [activeCard, setActiveCard] = useState(null);
 
   return (
     <section
@@ -72,7 +72,7 @@ export default function About() {
           I&rsquo;ve also integrated a custom chatbot into my portfolio, used Framer Motion
           for animation, and prioritized SEO + performance optimization.
           <br />
-          If you&rsquo;re looking for a developer who mixes creativity with technical depth —
+          If you&rsquo;re looking for a developer who mixes creativity with technical depth &mdash;
           I&rsquo;m ready to collaborate and bring your ideas to life.
         </motion.p>
 
