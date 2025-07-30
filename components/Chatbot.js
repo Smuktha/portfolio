@@ -57,7 +57,7 @@ export default function Chatbot() {
     }
     if (text.includes('contact')) {
       document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-      return `Let's <strong>Contact</strong> you 📬`;
+      return `Let&apos;s <strong>Contact</strong> you 📬`;
     }
     if (text.includes('blog')) {
       document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' });
@@ -73,7 +73,7 @@ export default function Chatbot() {
     }
     if (text.includes('tech')) {
       scrollToShowcaseAndSwitchTab('techstack');
-      return `Here's your <strong>Tech Stack</strong> 🔧`;
+      return `Here&apos;s your <strong>Tech Stack</strong> 🔧`;
     }
 
     return `Sorry, I didn't understand that. Please try again or use the options below.`;
@@ -101,7 +101,7 @@ export default function Chatbot() {
     switch (text) {
       case 'View my Projects':
         scrollToShowcaseAndSwitchTab('projects');
-        botMsg = { text: `Sure! Here's your <strong>Projects</strong> 🚀`, isBot: true };
+        botMsg = { text: `Sure! Here&apos;s your <strong>Projects</strong> 🚀`, isBot: true };
         break;
 
       case 'Show my Resume':
@@ -111,7 +111,7 @@ export default function Chatbot() {
 
       case 'Contact Me':
         document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-        botMsg = { text: `Let's <strong>Contact</strong> you 📬`, isBot: true };
+        botMsg = { text: `Let&apos;s <strong>Contact</strong> you 📬`, isBot: true };
         break;
 
       case 'Visit my Blogs':
@@ -131,7 +131,7 @@ export default function Chatbot() {
 
       case 'Explore Tech Stack':
         scrollToShowcaseAndSwitchTab('techstack');
-        botMsg = { text: `Here's your <strong>Tech Stack</strong> 🔧`, isBot: true };
+        botMsg = { text: `Here&apos;s your <strong>Tech Stack</strong> 🔧`, isBot: true };
         break;
 
       default:

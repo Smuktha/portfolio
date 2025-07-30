@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const posts = [
   {
-    title: "Coding & Me? Here's How That Happened",
+    title: "Coding & Me? Here&apos;s How That Happened",
     url: "https://medium.com/@mukthas701/coding-me-heres-how-that-happened-776150438b0b",
     date: "May 26, 2025",
     image: "/images/blog/shutterstock_1612044622.jpg",
