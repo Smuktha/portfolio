@@ -3,7 +3,7 @@ import Chatbot from '../components/Chatbot';
 import CursorTrail from '@/components/CursorTrail';
 import { useEffect } from 'react';
 import VisitPopup from "@/components/VisitPopup";
-import Head from 'next/head'; // ✅ Import Head
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -12,32 +12,46 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-     <Head>
-  <title>Muktha Suvarna | Full Stack Developer</title>
-  <meta
-    name="description"
-    content="Portfolio of Muktha Suvarna - Full Stack Developer passionate about building sleek websites and creative software solutions."
-  />
-  <meta
-    name="keywords"
-    content="Muktha Suvarna, Web Developer, Portfolio, React, Next.js, Tailwind, Full Stack"
-  />
-  <meta name="author" content="Muktha Suvarna" />
-  <meta property="og:title" content="Muktha Suvarna | Portfolio" />
-  <meta
-    property="og:description"
-    content="Check out my developer portfolio and projects."
-  />
-  <meta property="og:image" content="/logo.png" />
-  <meta property="og:url" content="https://portfolio-mukthas-projects-7e55e4c8.vercel.app/" />
-  <meta name="twitter:card" content="summary_large_image" />
+      <Head>
+        <title>Muktha Suvarna | Full Stack Developer</title>
+        <meta
+          name="description"
+          content="Portfolio of Muktha Suvarna - Full Stack Developer passionate about building sleek websites and creative software solutions."
+        />
+        <meta
+          name="keywords"
+          content="Muktha Suvarna, Web Developer, Portfolio, React, Next.js, Tailwind, Full Stack"
+        />
+        <meta name="author" content="Muktha Suvarna" />
 
-  {/* ✅ Google site verification */}
-  
-  <meta name="google-site-verification" content="0Y7mLLyiddNQLFX6CKUJF3nT2p_kzE8Qw0n9Ujcq8Wg" />
+        {/* Open Graph (Link Preview) */}
+        <meta property="og:title" content="Muktha Suvarna | Portfolio" />
+        <meta
+          property="og:description"
+          content="Check out my developer portfolio and projects."
+        />
+        <meta
+          property="og:image"
+          content="https://portfolio-mukthas-projects-7e55e4c8.vercel.app/logo.png"
+        />
+        <meta
+          property="og:url"
+          content="https://portfolio-mukthas-projects-7e55e4c8.vercel.app/"
+        />
+        <meta property="og:type" content="website" />
 
-  <link rel="icon" href="/favicon.ico" />
-</Head>
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+
+        {/* Google Site Verification */}
+        <meta
+          name="google-site-verification"
+          content="0Y7mLLyiddNQLFX6CKUJF3nT2p_kzE8Qw0n9Ujcq8Wg"
+        />
+
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
       <CursorTrail />
       <Component {...pageProps} />
