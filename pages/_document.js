@@ -15,7 +15,7 @@ export default function Document() {
         />
         <meta
           property="og:image"
-          content="https://portfolio-mukthas-projects-7e55e4c8.vercel.app/bg-freelance.png"
+          content="https://portfolio-mukthas-projects-7e55e4c8.vercel.app/images/bg-freelance.png"
         />
         <meta
           property="og:url"
@@ -32,7 +32,7 @@ export default function Document() {
         />
         <meta
           name="twitter:image"
-          content="https://portfolio-mukthas-projects-7e55e4c8.vercel.app/bg-freelance.png"
+          content="https://portfolio-mukthas-projects-7e55e4c8.vercel.app/images/bg-freelance.png"
         />
 
         {/* Devicon CDN */}
