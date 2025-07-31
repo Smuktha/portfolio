@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function FancyCursor() {
   const canvasRef = useRef(null);
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -9,16 +10,19 @@ export default function FancyCursor() {
     let particles = [];
     let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 
-    // Resize canvas
+    // Set initial size
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    window.addEventListener("resize", () => {
+    const resizeHandler = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-    });
+    };
+    window.addEventListener("resize", resizeHandler);
 
-    window.addEventListener("mousemove", (e) => {
+    const mousemoveHandler = (e) => {
+      if (!isHeroVisible) return; // 🔥 Only run if hero is visible
+
       mouse.x = e.clientX;
       mouse.y = e.clientY;
 
@@ -32,7 +36,8 @@ export default function FancyCursor() {
           dy: (Math.random() - 0.5) * 2,
         });
       }
-    });
+    };
+    window.addEventListener("mousemove", mousemoveHandler);
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -56,15 +61,47 @@ export default function FancyCursor() {
 
       requestAnimationFrame(animate);
     };
-
     animate();
+
+    // Clean up
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+      window.removeEventListener("mousemove", mousemoveHandler);
+    };
+  }, [isHeroVisible]);
+
+  // 🔍 Set up intersection observer
+  useEffect(() => {
+    const heroSection = document.querySelector("#hero");
+    if (!heroSection) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsHeroVisible(entry.isIntersecting);
+      },
+      {
+        root: null,
+        threshold: 0.2, // Trigger when 20% visible
+      }
+    );
+
+    observer.observe(heroSection);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
       className="fixed top-0 left-0 pointer-events-none z-50"
-      style={{ width: "100%", height: "100%", mixBlendMode: "screen" }}
+      style={{
+        width: "100%",
+        height: "100%",
+        mixBlendMode: "screen",
+        display: isHeroVisible ? "block" : "none", // Hide canvas when not in Hero
+      }}
     />
   );
 }

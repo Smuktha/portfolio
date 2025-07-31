@@ -18,14 +18,12 @@ export default function Hero() {
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // ✅ useEffect with dependency
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % titles.length);
     }, 3000);
-
     return () => clearInterval(interval);
-  }, [titles.length]);
+  }, []);
 
   const skills = [
     "React.js", "Next.js", "Tailwind CSS", "Node.js",
@@ -47,7 +45,11 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center text-white overflow-hidden">
+    <section
+      id="hero"
+      className="relative w-full min-h-screen flex items-center justify-center text-white overflow-hidden px-4 sm:px-8"
+    >
+      {/* 📸 Background Image */}
       <Image
         src={avatar}
         alt="Hero Background"
@@ -56,48 +58,55 @@ export default function Hero() {
         priority
       />
 
-      {positions.map((pos, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, scale: 0.95, y: 0 }}
-          animate={{ opacity: [0, 1, 0], scale: [0.95, 1.15, 0.95], y: [0, -6, 0] }}
-          transition={{
-            delay: pos.delay,
-            duration: 6,
-            repeat: Infinity,
-            repeatDelay: 2,
-            ease: "easeInOut"
-          }}
-          style={{ position: "absolute", ...pos }}
-          className="px-5 py-2 rounded-md border border-white/40 text-sm md:text-base flex items-center justify-center font-medium shadow-xl z-10 bg-white/20 backdrop-blur-md"
-        >
-          <span className="text-white font-semibold whitespace-nowrap">
-            {skills[index % skills.length]}
-          </span>
-        </motion.div>
-      ))}
+      {/* 💫 Floating Skills - Hide on small screens */}
+      <div className="hidden md:block">
+        {positions.map((pos, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, scale: 0.95, y: 0 }}
+            animate={{ opacity: [0, 1, 0], scale: [0.95, 1.15, 0.95], y: [0, -6, 0] }}
+            transition={{
+              delay: pos.delay,
+              duration: 6,
+              repeat: Infinity,
+              repeatDelay: 2,
+              ease: "easeInOut"
+            }}
+            style={{ position: "absolute", ...pos }}
+            className="px-4 py-1.5 rounded-md border border-white/30 text-xs md:text-sm flex items-center justify-center font-medium shadow-md z-10 bg-white/20 backdrop-blur-md"
+          >
+            <span className="text-white font-semibold whitespace-nowrap">
+              {skills[index % skills.length]}
+            </span>
+          </motion.div>
+        ))}
+      </div>
 
-      <div className="absolute z-10 text-center flex flex-col items-center justify-center inset-0">
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-3 font-heading">
+      {/* 🎯 Hero Content */}
+      <div className="absolute z-10 text-center flex flex-col items-center justify-center inset-0 px-2">
+        <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold mb-3 font-heading">
           <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white/90 to-white/50 animate-pulse-fast">
             {titles[currentIndex]}
           </span>
         </h1>
-        <p className="text-lg md:text-xl text-white/80 mb-8 max-w-xl mx-auto">
+
+        <p className="text-base sm:text-lg md:text-xl text-white/80 mb-8 max-w-md sm:max-w-xl mx-auto">
           Building elegant, responsive, and high-performance websites using React, Next.js, Tailwind & more.
         </p>
-        <div className="flex justify-center gap-4">
+
+        {/* 🌐 Social Icons */}
+        <div className="flex justify-center gap-3 sm:gap-4 flex-wrap">
           {[
-            { href: "https://github.com/Smuktha", icon: <Github /> },
-            { href: "https://linkedin.com/in/muktha-suvarna12", icon: <Linkedin /> },
-            { href: "https://medium.com/@mukthas701", icon: <BookOpen /> },
-            { href: "mailto:mukthas701@gmail.com", icon: <Mail /> }
+            { href: "https://github.com/Smuktha", icon: <Github size={20} /> },
+            { href: "https://linkedin.com/in/muktha-suvarna12", icon: <Linkedin size={20} /> },
+            { href: "https://medium.com/@mukthas701", icon: <BookOpen size={20} /> },
+            { href: "mailto:mukthas701@gmail.com", icon: <Mail size={20} /> }
           ].map(({ href, icon }, i) => (
             <Link
               key={i}
               href={href}
               target="_blank"
-              className="p-3 rounded-full border border-white/20 hover:border-white transition-all duration-300 bg-white/5 backdrop-blur-sm"
+              className="p-2 sm:p-3 rounded-full border border-white/20 hover:border-white transition-all duration-300 bg-white/10 backdrop-blur-sm"
             >
               {icon}
             </Link>

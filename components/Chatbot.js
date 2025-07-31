@@ -19,6 +19,7 @@ const options = [
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
+  const [hasGreeted, setHasGreeted] = useState(false);
   const [messages, setMessages] = useState([
     {
       text: `Hey, I'm <strong>MukthaBot</strong> 🤖<br/>How can I assist you today?`,
@@ -27,56 +28,91 @@ export default function Chatbot() {
   ]);
   const [input, setInput] = useState('');
   const chatRef = useRef(null);
-
   const router = useRouter();
   const pathname = usePathname();
 
   const scrollToShowcaseAndSwitchTab = (tabKey) => {
-    if (pathname !== '/') {
-      router.push(`/?tab=${tabKey.toLowerCase()}`);
-    } else {
-      document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' });
-      window.dispatchEvent(new CustomEvent('switchShowcaseTab', { detail: tabKey }));
-    }
+    setIsOpen(false);
+    setTimeout(() => {
+      if (pathname !== '/') {
+        router.push(`/?tab=${tabKey.toLowerCase()}`);
+      } else {
+        document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' });
+        window.dispatchEvent(new CustomEvent('switchShowcaseTab', { detail: tabKey }));
+      }
+    }, 300);
   };
 
   const handleInputCommand = (inputText) => {
     const text = inputText.toLowerCase();
 
-    if (['hi', 'hello', 'hii', 'hey', 'hola'].some((greet) => text.includes(greet))) {
-      return `Hello there! 👋 I'm <strong>MukthaBot</strong>. How can I help you today? 😊`;
+    if (['how are you', 'how r u', 'how are u'].some((phrase) => text.includes(phrase))) {
+      return `I'm doing awesome! Thanks for asking 😄 What about you? How can I help today?`;
+    }
+
+    if (['hi', 'hello', 'hii', 'hey', 'hola', 'hyy'].some((greet) => text.includes(greet))) {
+      return `Hey there! 👋 I'm <strong>MukthaBot</strong>, your virtual buddy. How can I assist you today?`;
+    }
+
+    if (text.includes('what can you do') || text.includes('what u can do')) {
+      return `I can help you with:<br/>
+      - 📄 Resume<br/>
+      - 🚀 Projects<br/>
+      - ✍️ Blogs<br/>
+      - 💼 Freelance Work<br/>
+      - 📜 Certificates<br/>
+      - 🔧 Tech Stack<br/>
+      Just pick or type what you want to see!`;
+    }
+
+    if (text.includes('joke')) {
+      return "Why did the CSS developer go broke? 🤔 Because they kept using margin: collapse! 😆";
     }
 
     if (text.includes('project')) {
       scrollToShowcaseAndSwitchTab('projects');
       return `Sure! Showing your <strong>Projects</strong> 🚀`;
     }
+
     if (text.includes('resume')) {
+      setIsOpen(false);
       window.open('/resume_muktha.pdf', '_blank');
       return `Opening your <strong>Resume</strong> 📄`;
     }
+
     if (text.includes('contact')) {
-      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-      return `Let&apos;s <strong>Contact</strong> you 📬`;
+      setIsOpen(false);
+      setTimeout(() => {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+      return `Let's <strong>Contact</strong> you 📬`;
     }
+
     if (text.includes('blog')) {
-      document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' });
+      setIsOpen(false);
+      setTimeout(() => {
+        document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
       return `Heading to your <strong>Blogs</strong> ✍️`;
     }
+
     if (text.includes('freelance')) {
+      setIsOpen(false);
       router.push('/freelance');
       return `Opening your <strong>Freelance Work</strong> 💼`;
     }
+
     if (text.includes('certificate')) {
       scrollToShowcaseAndSwitchTab('certificates');
       return `Here are your <strong>Certificates</strong> 📜`;
     }
+
     if (text.includes('tech')) {
       scrollToShowcaseAndSwitchTab('techstack');
-      return `Here&apos;s your <strong>Tech Stack</strong> 🔧`;
+      return `Here's your <strong>Tech Stack</strong> 🔧`;
     }
 
-    return `Sorry, I didn't understand that. Please try again or use the options below.`;
+    return `Oops, I didn't catch that! Try one of the options below 👇`;
   };
 
   const handleSend = () => {
@@ -101,45 +137,62 @@ export default function Chatbot() {
     switch (text) {
       case 'View my Projects':
         scrollToShowcaseAndSwitchTab('projects');
-        botMsg = { text: `Sure! Here&apos;s your <strong>Projects</strong> 🚀`, isBot: true };
+        botMsg = { text: `Sure! Here's your <strong>Projects</strong> 🚀`, isBot: true };
         break;
-
       case 'Show my Resume':
+        setIsOpen(false);
         window.open('/resume_muktha.pdf', '_blank');
         botMsg = { text: `Opening your <strong>Resume</strong> 📄`, isBot: true };
         break;
-
       case 'Contact Me':
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-        botMsg = { text: `Let&apos;s <strong>Contact</strong> you 📬`, isBot: true };
+        setIsOpen(false);
+        setTimeout(() => {
+          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+        botMsg = { text: `Let's <strong>Contact</strong> you 📬`, isBot: true };
         break;
-
       case 'Visit my Blogs':
-        document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' });
+        setIsOpen(false);
+        setTimeout(() => {
+          document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
         botMsg = { text: `Heading to your <strong>Blogs</strong> ✍️`, isBot: true };
         break;
-
       case 'See Freelance Work':
+        setIsOpen(false);
         router.push('/freelance');
         botMsg = { text: `Opening your <strong>Freelance Work</strong> 💼`, isBot: true };
         break;
-
       case 'View Certificates':
         scrollToShowcaseAndSwitchTab('certificates');
         botMsg = { text: `Here are your <strong>Certificates</strong> 📜`, isBot: true };
         break;
-
       case 'Explore Tech Stack':
         scrollToShowcaseAndSwitchTab('techstack');
-        botMsg = { text: `Here&apos;s your <strong>Tech Stack</strong> 🔧`, isBot: true };
+        botMsg = { text: `Here's your <strong>Tech Stack</strong> 🔧`, isBot: true };
         break;
-
       default:
         botMsg = { text: `Hmm, I don't know that yet!`, isBot: true };
     }
 
     setMessages((prev) => [...prev, userMsg, botMsg]);
   };
+
+  useEffect(() => {
+    if (isOpen && !hasGreeted) {
+      const timeout = setTimeout(() => {
+        setMessages((prev) => [
+          ...prev,
+          {
+            text: "Hi, how are you? 👋",
+            isBot: true,
+          },
+        ]);
+        setHasGreeted(true);
+      }, 700);
+      return () => clearTimeout(timeout);
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (chatRef.current) {
@@ -159,7 +212,7 @@ export default function Chatbot() {
 
   return (
     <>
-      {/* Bot Button with animation */}
+      {/* Bot Button */}
       <motion.div
         className="fixed bottom-6 right-6 z-50"
         initial={{ scale: 0 }}

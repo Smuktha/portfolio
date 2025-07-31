@@ -46,6 +46,7 @@ export default function MobileSidebar() {
             transition={{ duration: 0.3 }}
             className="fixed top-0 right-0 h-full w-[270px] bg-darkBg text-white z-50 shadow-lg flex flex-col p-6"
           >
+            {/* Navigation Links */}
             <nav className="flex flex-col space-y-6 text-lg mt-20 font-body text-subtleText">
               {navLinks.map(([href, label]) => (
                 <Link
@@ -57,6 +58,16 @@ export default function MobileSidebar() {
                   {label}
                 </Link>
               ))}
+              {/* 📄 Show Resume Button */}
+              <a
+                href="/Muktha_Resume.pdf" // or your actual resume path
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={toggleSidebar}
+                className="hover:text-linearStart transition-colors text-sm mt-6 underline"
+              >
+                📄 View Resume
+              </a>
             </nav>
 
             {/* 🧠 Footer Tagline */}
