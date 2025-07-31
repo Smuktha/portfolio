@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }) {
           content="Check out my developer portfolio and projects."
         />
         <meta property="og:image" content="/cover-image.jpg" />
-        <meta property="og:url" content="https://your-vercel-url.vercel.app" />
+        <meta property="og:url" content="https://portfolio-mukthas-projects-7e55e4c8.vercel.app/" />
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

@@ -4,7 +4,7 @@ const SEO = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://your-portfolio.vercel.app',
+    url: 'https://portfolio-mukthas-projects-7e55e4c8.vercel.app/',
     site_name: 'Muktha Suvarna',
     images: [
       {

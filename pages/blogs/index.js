@@ -38,9 +38,9 @@ export default function AllBlogsPage() {
       <NextSeo
         title="All Blogs | Muktha's Portfolio"
         description="Explore blog posts written by Muktha on frontend, deployment, animation, and final year projects."
-        canonical="https://your-portfolio.vercel.app/blogs"
+        canonical="https://portfolio-mukthas-projects-7e55e4c8.vercel.app/#blog"
         openGraph={{
-          url: "https://your-portfolio.vercel.app/blogs",
+          url: "https://portfolio-mukthas-projects-7e55e4c8.vercel.app/#blog",
           title: "All Blogs | Muktha's Portfolio",
           description:
             "Explore blog posts written by Muktha on frontend, deployment, animation, and final year projects.",
