@@ -33,7 +33,8 @@ function MyApp({ Component, pageProps }) {
   <meta name="twitter:card" content="summary_large_image" />
 
   {/* ✅ Google site verification */}
-  <meta name="google-site-verification" content="EpWRlk_V3guk5RGAQWLZOZmKS9pUOKXGd7iMve8f9fo" />
+  
+  <meta name="google-site-verification" content="0Y7mLLyiddNQLFX6CKUJF3nT2p_kzE8Qw0n9Ujcq8Wg" />
 
   <link rel="icon" href="/favicon.ico" />
 </Head>
