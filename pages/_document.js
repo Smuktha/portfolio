@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         {/* Favicon */}
-        <link rel="icon" href="/apple-touch-icon.png" type="image/png" />
+        <link rel="icon" href="/logo.png" type="image/png" />
 
         {/* Open Graph / Link Preview Meta Tags */}
         <meta property="og:title" content="Muktha Suvarna | Portfolio" />
@@ -15,7 +15,7 @@ export default function Document() {
         />
         <meta
           property="og:image"
-          content="https://portfolio-mukthas-projects-7e55e4c8.vercel.app/images/apple-touch-icon.png"
+          content="https://portfolio-mukthas-projects-7e55e4c8.vercel.app/images/logo.png"
         />
         <meta
           property="og:url"
@@ -32,7 +32,7 @@ export default function Document() {
         />
         <meta
           name="twitter:image"
-          content="https://portfolio-mukthas-projects-7e55e4c8.vercel.app/images/apple-touch-icon.png"
+          content="https://portfolio-mukthas-projects-7e55e4c8.vercel.app/images/logo.png"
         />
 
         {/* Devicon CDN */}

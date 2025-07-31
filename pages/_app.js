@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }) {
     property="og:description"
     content="Check out my developer portfolio and projects."
   />
-  <meta property="og:image" content="/apple-touch-icon.png" />
+  <meta property="og:image" content="/logo.png" />
   <meta property="og:url" content="https://portfolio-mukthas-projects-7e55e4c8.vercel.app/" />
   <meta name="twitter:card" content="summary_large_image" />
 
