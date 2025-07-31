@@ -2,22 +2,46 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react"; // ✅ Fix this line
 import Image from "next/image";
 import Header from "../components/Header";
+import emailjs from '@emailjs/browser';
 
 export default function Freelance() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  const handleChange = (e) => {
+   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const [sending, setSending] = useState(false);
+const [statusMessage, setStatusMessage] = useState('');
 
+const formRef = useRef(null);
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Form submitted! Thank you.");
-    setFormData({ name: "", email: "", message: "" });
+    setSending(true);
+    setStatusMessage('');
+
+   emailjs.sendForm(
+  'service_4o5jila', // service ID
+  'template_62aeg48', // template ID
+  formRef.current,    // form element (ref)
+  'J2oHJjNtfAaPL6rFm' // public key
+)
+
+      .then(
+        () => {
+          setSending(false);
+          setFormData({ name: '', email: '', message: '' });
+          setStatusMessage('✅ Message sent successfully!');
+        },
+        () => {
+          setSending(false);
+          setStatusMessage('❌ Something went wrong. Please try again.');
+        }
+      );
   };
+ 
 
   const projects = [
     {
@@ -227,47 +251,63 @@ export default function Freelance() {
         </section>
 
         {/* CONTACT SECTION */}
-        <section id="contact" className="px-6 py-24 sm:px-16 lg:px-32">
-          <h2 className="text-3xl font-bold mb-6 text-center">Let's Connect</h2>
-          <form
-            onSubmit={handleSubmit}
-            className="bg-white/5 p-6 rounded-xl max-w-xl mx-auto border border-white/20 space-y-4"
+      <section id="contact" className="px-6 py-24 sm:px-16 lg:px-32">
+        <h2 className="text-3xl font-bold mb-6 text-center">Let's Connect</h2>
+        <form
+          ref={formRef}
+          onSubmit={handleSubmit}
+          className="bg-white/5 p-6 rounded-xl max-w-xl mx-auto border border-white/20 space-y-4"
+        >
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="w-full p-3 rounded bg-white/10 border border-white/20 text-white placeholder-white/50"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="w-full p-3 rounded bg-white/10 border border-white/20 text-white placeholder-white/50"
+          />
+          <textarea
+            name="message"
+            placeholder="Tell me about your project..."
+            rows={4}
+            value={formData.message}
+            onChange={handleChange}
+            required
+            className="w-full p-3 rounded bg-white/10 border border-white/20 text-white placeholder-white/50"
+          ></textarea>
+
+          <button
+            type="submit"
+            className="bg-[#3fc1c9] hover:bg-[#35aeb7] px-6 py-3 rounded-lg font-medium text-white w-full flex justify-center items-center gap-2"
           >
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full p-3 rounded bg-white/10 border border-white/20 text-white placeholder-white/50"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full p-3 rounded bg-white/10 border border-white/20 text-white placeholder-white/50"
-            />
-            <textarea
-              name="message"
-              placeholder="Tell me about your project..."
-              rows="4"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              className="w-full p-3 rounded bg-white/10 border border-white/20 text-white placeholder-white/50"
-            ></textarea>
-            <button
-              type="submit"
-              className="bg-[#3fc1c9] hover:bg-[#35aeb7] px-6 py-3 rounded-lg font-medium text-white w-full"
+            {sending ? (
+              <span className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></span>
+            ) : (
+              'Send Message'
+            )}
+          </button>
+
+          {statusMessage && (
+            <p
+              className={`text-sm mt-4 text-center ${
+                statusMessage.includes('✅') ? 'text-green-400' : 'text-red-400'
+              }`}
             >
-              Send Message
-            </button>
-          </form>
-        </section>
+              {statusMessage}
+            </p>
+          )}
+        </form>
+      </section>
       </main>
     </>
   );
