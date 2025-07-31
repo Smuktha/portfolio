@@ -60,7 +60,7 @@ export default function MobileSidebar() {
               ))}
               {/* 📄 Show Resume Button */}
               <a
-                href="/Muktha_Resume.pdf" // or your actual resume path
+                href="/resume_muktha.pdf" // or your actual resume path
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={toggleSidebar}
