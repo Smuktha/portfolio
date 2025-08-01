@@ -25,3 +25,40 @@ git clone https://github.com/Smuktha/portfolio.git
 cd portfolio
 npm install
 npm run dev
+
+
+Visit: `http://localhost:3000`
+
+---
+
+## 📸 Features
+
+* 🖼️ Hero with illustrated avatar
+* 🧠 About section with animated stats & links
+* 📚 Projects with live demo & tech tags
+* 📜 Certificates tab & My Tech Stack section
+* ✨ Testimonials, Blog, and Footer with social links
+* 🤖 Smart Chatbot that responds interactively
+* 🔔 Scroll-triggered visit popup
+
+---
+
+## 🖌️ Customization
+
+* Change content in `data/` folder
+* Add images to `/public/images`
+* Modify SEO in `pages/_app.tsx` and `pages/_document.tsx`
+
+---
+
+## 📬 Contact
+
+Feel free to connect and provide feedback!
+
+* LinkedIn: [Muktha Suvarna](https://www.linkedin.com/in/muktha-suvarna12/)
+* GitHub: [@Smuktha](https://github.com/Smuktha)
+* Email: (optional, if you want to add)
+
+---
+
+
