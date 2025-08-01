@@ -40,7 +40,7 @@ const projects = [
     title: "Movie Recommender System",
     description: "A machine learning-powered app suggesting movies.",
     tech: ["Python", "Flask", "HTML/CSS"],
-    github: "https://github.com/muktha/movie-recommender",
+    github: "https://github.com/Smuktha/movie-recommender",
     live: "",
     blog: "",
     image: "/images/projects/movie.png",

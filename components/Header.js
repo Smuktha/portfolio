@@ -61,14 +61,19 @@ export default function Header() {
     >
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 md:py-4 font-body">
         {/* 🧠 Logo */}
-        <Link
-          href="/"
-          className="font-heading font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 drop-shadow-md 
-          text-2xl sm:text-xl md:text-xl lg:text-2xl"
-        >
-          <span className="block md:hidden text-3xl">Muktha</span>
-          <span className="hidden md:block">Muktha</span>
-        </Link>
+       <Link
+  href={isFreelance ? "/" : "/"}
+  className="font-heading font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 drop-shadow-md 
+  text-2xl sm:text-xl md:text-xl lg:text-2xl"
+>
+  <span className="block md:hidden text-3xl">
+    {isFreelance ? "Portfolio" : "Muktha"}
+  </span>
+  <span className="hidden md:block">
+    {isFreelance ? "Portfolio" : "Muktha"}
+  </span>
+</Link>
+
 
         {/* 📺 Desktop Nav */}
         <ul className="hidden md:flex items-center space-x-6 text-sm font-medium">

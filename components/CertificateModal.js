@@ -10,7 +10,7 @@ export default function CertificateModal({ src, onClose }) {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 bg-black bg-opacity-70 z-[9999] flex items-center justify-center p-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -21,15 +21,17 @@ export default function CertificateModal({ src, onClose }) {
           initial={{ scale: 0.95 }}
           animate={{ scale: 1 }}
           exit={{ scale: 0.95 }}
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()} // Prevents closing when clicking inside modal
         >
-          <button
-            className="absolute top-4 right-4 text-gray-600 dark:text-gray-300 hover:text-red-500"
+          {/* Close Button */}
+          <div
+            className="absolute top-4 right-4 text-gray-600 dark:text-gray-300 hover:text-red-500 cursor-pointer z-50"
             onClick={onClose}
           >
-            <X />
-          </button>
+            <X size={24} />
+          </div>
 
+          {/* Image Viewer */}
           <div className="relative w-full h-[70vh] sm:h-[60vh]">
             <Image
               src={src}
