@@ -44,7 +44,7 @@ Visit: `http://localhost:3000`
 
 ---
 
-## 🖌️ Customization
+🖌️ Customization
 
 * Change content in `data/` folder
 * Add images to `/public/images`
@@ -52,13 +52,13 @@ Visit: `http://localhost:3000`
 
 ---
 
-## 📬 Contact
+ 📬 Contact
 
 Feel free to connect and provide feedback!
 
 * LinkedIn: [Muktha Suvarna](https://www.linkedin.com/in/muktha-suvarna12/)
 * GitHub: [@Smuktha](https://github.com/Smuktha)
-* Email: (optional, if you want to add)
+* Email: mukthas701@gmail.com
 
 ---
 
