@@ -27,11 +27,12 @@ npm install
 npm run dev
 
 
+
+
 Visit: `http://localhost:3000`
 
----
 
-## 📸 Features
+📸 Features
 
 * 🖼️ Hero with illustrated avatar
 * 🧠 About section with animated stats & links
