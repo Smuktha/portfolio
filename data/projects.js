@@ -7,7 +7,7 @@ const projects = [
     description:
       "A professional dental clinic website for Morton Dental, featuring services overview, contact form, booking integration, and responsive design.",
     tech: ["Next.js", "Tailwind CSS", "App Router", "Framer Motion"],
-    github: "https://github.com/Smuktha/morton-dental",
+    github: "https://github.com/Smuktha/mortondental",
     live: "https://www.mortondental.com.au",
     blog: "https://mukthablogs.hashnode.dev/building-morton-dental",
     image: "/images/projects/morton.png",
