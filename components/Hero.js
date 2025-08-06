@@ -32,16 +32,16 @@ export default function Hero() {
   ];
 
   const positions = [
-    { top: "20%", left: "15%", delay: 0 },
-    { top: "35%", right: "20%", delay: 1 },
-    { bottom: "25%", left: "20%", delay: 2 },
-    { bottom: "20%", right: "15%", delay: 3 },
-    { top: "50%", left: "10%", delay: 4 },
-    { top: "55%", right: "10%", delay: 5 },
-    { top: "30%", left: "25%", delay: 2.5 },
-    { bottom: "30%", right: "25%", delay: 3.5 },
-    { top: "40%", right: "15%", delay: 1.5 },
-    { bottom: "40%", left: "15%", delay: 4.5 }
+    { top: "20%", left: "10%", delay: 0 },
+    { top: "30%", right: "10%", delay: 1 },
+    { bottom: "25%", left: "15%", delay: 2 },
+    { bottom: "15%", right: "10%", delay: 3 },
+    { top: "50%", left: "5%", delay: 4 },
+    { top: "55%", right: "5%", delay: 5 },
+    { top: "25%", left: "20%", delay: 2.5 },
+    { bottom: "30%", right: "15%", delay: 3.5 },
+    { top: "40%", right: "10%", delay: 1.5 },
+    { bottom: "40%", left: "10%", delay: 4.5 }
   ];
 
   return (
@@ -58,8 +58,8 @@ export default function Hero() {
         priority
       />
 
-      {/* 💫 Floating Skills - Hide on small screens */}
-      <div className="hidden md:block">
+      {/* 💫 Floating Skills — now visible on all screens */}
+      <div className="block">
         {positions.map((pos, index) => (
           <motion.div
             key={index}
@@ -73,7 +73,7 @@ export default function Hero() {
               ease: "easeInOut"
             }}
             style={{ position: "absolute", ...pos }}
-            className="px-4 py-1.5 rounded-md border border-white/30 text-xs md:text-sm flex items-center justify-center font-medium shadow-md z-10 bg-white/20 backdrop-blur-md"
+            className="px-3 py-1 rounded-md border border-white/30 text-xs sm:text-sm flex items-center justify-center font-medium shadow-md z-10 bg-white/20 backdrop-blur-md max-w-[40vw]"
           >
             <span className="text-white font-semibold whitespace-nowrap">
               {skills[index % skills.length]}
