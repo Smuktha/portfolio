@@ -4,6 +4,7 @@ import CursorTrail from '@/components/CursorTrail';
 import { useEffect } from 'react';
 import VisitPopup from "@/components/VisitPopup";
 import Head from 'next/head';
+import { Analytics } from "@vercel/analytics/react"; // ✅ use /react
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -57,6 +58,9 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
       <Chatbot />
       <VisitPopup />
+
+      {/* 👇 Add analytics here */}
+      <Analytics />
     </>
   );
 }
